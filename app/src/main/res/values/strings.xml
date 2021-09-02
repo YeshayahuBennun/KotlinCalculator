@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kotlin Calculator</string>
+    <string name="edit_tex_hint">enter number</string>
+</resources>
