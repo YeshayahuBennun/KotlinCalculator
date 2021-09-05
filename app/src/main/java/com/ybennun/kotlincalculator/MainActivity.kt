@@ -6,7 +6,13 @@ import android.view.View
 import android.widget.EditText
 
 class MainActivity : AppCompatActivity() {
+
     lateinit var editText: EditText
+    var number1:Float = 0.0f
+    var isPlus:Boolean = false
+    var isMinus:Boolean =false
+    var isDivide:Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,11 +38,6 @@ class MainActivity : AppCompatActivity() {
                 editText.setText(number)
             }
 
-            R.id.button_div ->{
-                val number = editText.text.toString() + "/"
-                editText.setText(number)
-            }
-
             R.id.button_four ->{
                 val number = editText.text.toString() + "4"
                 editText.setText(number)
@@ -49,11 +50,6 @@ class MainActivity : AppCompatActivity() {
 
             R.id.button_six ->{
                 val number = editText.text.toString() + "6"
-                editText.setText(number)
-            }
-
-            R.id.button_sub ->{
-                val number = editText.text.toString() + "-"
                 editText.setText(number)
             }
 
@@ -72,15 +68,6 @@ class MainActivity : AppCompatActivity() {
                 editText.setText(number)
             }
 
-            R.id.button_plus ->{
-                val number = editText.text.toString() + "+"
-                editText.setText(number)
-            }
-
-            R.id.button_clear ->{
-                editText.setText("")
-            }
-
             R.id.button_zero ->{
                 val number = editText.text.toString() + "0"
                 editText.setText(number)
@@ -91,10 +78,50 @@ class MainActivity : AppCompatActivity() {
                 editText.setText(number)
             }
 
-            R.id.button_equals ->{
-                val number = editText.text.toString() + "="
-                editText.setText(number)
+            R.id.button_clear ->{
+               editText.setText("")
             }
+
+            R.id.button_plus ->{
+                number1 = editText.text.toString().toFloat()
+                editText.setText("")
+                isPlus=true
+            }
+
+            R.id.button_sub ->{
+                number1 = editText.text.toString().toFloat()
+                editText.setText("")
+                isMinus=true
+            }
+
+            R.id.button_div ->{
+                number1 = editText.text.toString().toFloat()
+                editText.setText("")
+                isDivide=true
+            }
+
+
+            R.id.button_equals->{
+
+                if(isPlus) {
+                    val number2 = editText.text.toString().toFloat()
+                    val result = number1 + number2
+                    editText.setText(result.toString())
+                    isPlus=false
+                }else if(isMinus){
+                    val number2 = editText.text.toString().toFloat()
+                    val result = number1 - number2
+                    editText.setText(result.toString())
+                    isMinus=false
+                }else if(isDivide){
+                    val number2 = editText.text.toString().toFloat()
+                    val result = number1 / number2
+                    editText.setText(result.toString())
+                    isDivide=false
+                }
+            }
+
+
 
         }
     }
