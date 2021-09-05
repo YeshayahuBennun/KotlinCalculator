@@ -8,7 +8,7 @@ import android.widget.EditText
 class MainActivity : AppCompatActivity() {
 
     lateinit var editText: EditText
-    var number1:Float = 0.0f
+    private var number1:Float = 0.0f
     var isPlus:Boolean = false
     var isMinus:Boolean =false
     var isDivide:Boolean = false
@@ -23,59 +23,49 @@ class MainActivity : AppCompatActivity() {
     fun operationFunction(view: View){
 
         when(view.id){
+
             R.id.button_one ->{
-                val number = editText.text.toString() + "1"
-                editText.setText(number)
+                numberClicked(1)
             }
 
             R.id.button_two ->{
-                val number = editText.text.toString() + "2"
-                editText.setText(number)
+                numberClicked(2)
             }
 
             R.id.button_three ->{
-                val number = editText.text.toString() + "3"
-                editText.setText(number)
+                numberClicked(3)
             }
 
             R.id.button_four ->{
-                val number = editText.text.toString() + "4"
-                editText.setText(number)
+                numberClicked(4)
             }
 
             R.id.button_five ->{
-                val number = editText.text.toString() + "5"
-                editText.setText(number)
+                numberClicked(5)
             }
 
             R.id.button_six ->{
-                val number = editText.text.toString() + "6"
-                editText.setText(number)
+                numberClicked(6)
             }
 
             R.id.button_seven ->{
-                val number = editText.text.toString() + "7"
-                editText.setText(number)
+                numberClicked(7)
             }
 
             R.id.button_eight ->{
-                val number = editText.text.toString() + "8"
-                editText.setText(number)
+                numberClicked(8)
             }
 
             R.id.button_nine ->{
-                val number = editText.text.toString() + "9"
-                editText.setText(number)
+                numberClicked(9)
             }
 
             R.id.button_zero ->{
-                val number = editText.text.toString() + "0"
-                editText.setText(number)
+                numberClicked(0)
             }
 
             R.id.button_point ->{
-                val number = editText.text.toString() + "."
-                editText.setText(number)
+               pointClicked()
             }
 
             R.id.button_clear ->{
@@ -83,46 +73,83 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.button_plus ->{
-                number1 = editText.text.toString().toFloat()
-                editText.setText("")
-                isPlus=true
+                plusClicked()
             }
 
             R.id.button_sub ->{
-                number1 = editText.text.toString().toFloat()
-                editText.setText("")
-                isMinus=true
+                minusClicked()
             }
 
             R.id.button_div ->{
-                number1 = editText.text.toString().toFloat()
-                editText.setText("")
-                isDivide=true
+                divClicked()
             }
-
 
             R.id.button_equals->{
-
-                if(isPlus) {
-                    val number2 = editText.text.toString().toFloat()
-                    val result = number1 + number2
-                    editText.setText(result.toString())
-                    isPlus=false
-                }else if(isMinus){
-                    val number2 = editText.text.toString().toFloat()
-                    val result = number1 - number2
-                    editText.setText(result.toString())
-                    isMinus=false
-                }else if(isDivide){
-                    val number2 = editText.text.toString().toFloat()
-                    val result = number1 / number2
-                    editText.setText(result.toString())
-                    isDivide=false
-                }
+                equalClicked()
             }
-
-
-
         }
+    }
+
+    private fun pointClicked() {
+        val number = editText.text.toString() + "."
+        editText.setText(number)
+    }
+
+    private fun numberClicked(numberClicked:Int){
+        val number = editText.text.toString() + numberClicked.toString()
+        editText.setText(number)
+    }
+
+    private fun plusClicked(){
+        number1 = editText.text.toString().toFloat()
+        editText.setText("")
+        isPlus=true
+    }
+
+    private fun minusClicked(){
+        number1 = editText.text.toString().toFloat()
+        editText.setText("")
+        isMinus=true
+    }
+
+    private fun divClicked(){
+        number1 = editText.text.toString().toFloat()
+        editText.setText("")
+        isDivide=true
+    }
+
+    private fun equalClicked(){
+        when {
+            isPlus -> {
+                plus()
+            }
+            isMinus -> {
+                minus()
+            }
+            isDivide -> {
+                divide()
+            }
+        }
+    }
+
+    private fun plus(){
+        val number2 = editText.text.toString().toFloat()
+        val result = number1 + number2
+        editText.setText(result.toString())
+        isPlus=false
+    }
+
+    private fun minus(){
+        val number2 = editText.text.toString().toFloat()
+        val result = number1 - number2
+        editText.setText(result.toString())
+        isMinus=false
+    }
+
+    private fun divide(){
+        val number2 = editText.text.toString().toFloat()
+        val result = number1 / number2
+        editText.setText(result.toString())
+        isDivide=false
     }
 }
